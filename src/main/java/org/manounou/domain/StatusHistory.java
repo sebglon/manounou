@@ -7,12 +7,13 @@ package org.manounou.domain;
 
 import java.util.Date;
 import javax.jdo.annotations.EmbeddedOnly;
+import javax.jdo.annotations.PersistenceCapable;
 
 /**
  *
  * @author sgl
  */
-@EmbeddedOnly
+@PersistenceCapable(embeddedOnly = "true")
 public class StatusHistory {
     private Date date;
     private Status status;

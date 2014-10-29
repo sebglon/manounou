@@ -6,15 +6,14 @@
 package org.manounou.domain;
 
 import com.google.appengine.repackaged.org.joda.time.DateTime;
-import java.util.Date;
-import javax.jdo.annotations.EmbeddedOnly;
+import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
 /**
  *
  * @author sgl
  */
-@EmbeddedOnly
+@PersistenceCapable(embeddedOnly = "true")
 public class DailyLog {
     
 

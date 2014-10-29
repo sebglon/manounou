@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.manounou.api;
+package org.manounou.spi;
 
 import org.manounou.spi.TimesheetServiceApi;
 import com.google.appengine.api.users.User;
@@ -33,6 +33,8 @@ public class TimesheetServiceApiTest {
      private User user;
     
     private Timesheet defaultTimesheet = null;
+    
+    private TimesheetServiceApi timesheetServiceApi;
     public TimesheetServiceApiTest() {
     }
     

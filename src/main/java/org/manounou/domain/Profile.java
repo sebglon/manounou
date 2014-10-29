@@ -8,12 +8,15 @@ package org.manounou.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
 /**
  *
  * @author sgl
  */
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Profile {
  /**
      *  Use userId as the datastore key.

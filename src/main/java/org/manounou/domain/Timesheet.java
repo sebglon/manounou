@@ -35,16 +35,13 @@ public class Timesheet {
     @Persistent
     private MonthDay monthDay;
 
-    @Persistent
-    @Embedded
+    @Persistent(embeddedElement = "true", defaultFetchGroup = "true")
     private List<DailyLog> dailyLogs = new ArrayList<>();
 
-    @Persistent
-    @Embedded
+    @Persistent(embeddedElement = "true")
     private List<StatusHistory> statusHistory = new ArrayList<>();
 
-    @Persistent
-    @Embedded
+    @Persistent(embedded = "true")
     private Status status;
 
     protected Timesheet() {
