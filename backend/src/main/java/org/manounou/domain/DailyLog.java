@@ -6,11 +6,11 @@
 package org.manounou.domain;
 
 import com.google.appengine.repackaged.org.joda.time.DateTime;
+
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
 /**
- *
  * @author sgl
  */
 @PersistenceCapable(embeddedOnly = "true")

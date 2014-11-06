@@ -5,7 +5,6 @@
  */
 package org.manounou.spi;
 
-import org.manounou.domain.PMF;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.Named;
@@ -13,15 +12,23 @@ import com.google.api.server.spi.response.NotFoundException;
 import com.google.appengine.api.oauth.OAuthRequestException;
 import com.google.appengine.api.users.User;
 import com.google.appengine.repackaged.org.joda.time.MonthDay;
-import java.io.IOException;
-import javax.jdo.PersistenceManager;
+import com.google.appengine.repackaged.org.joda.time.format.DateTimeFormat;
+import com.google.appengine.repackaged.org.joda.time.format.DateTimeFormatter;
+
 import org.manounou.Constants;
+import org.manounou.domain.PMF;
 import org.manounou.domain.Status;
-import static org.manounou.domain.Status.*;
 import org.manounou.domain.Timesheet;
 
+import java.io.IOException;
+
+import javax.jdo.PersistenceManager;
+
+import static org.manounou.domain.Status.EMPLOYEE_VALIDATION;
+import static org.manounou.domain.Status.EMPLOYER_VALIDATION;
+import static org.manounou.domain.Status.REJECTED;
+
 /**
- *
  * @author sgl
  */
 @Api(name = "timesheetApi", version = "v1", description = "An API to manage timesheet",
@@ -30,9 +37,13 @@ import org.manounou.domain.Timesheet;
         audiences = {Constants.ANDROID_AUDIENCE})
 public class TimesheetServiceApi {
 
+    DateTimeFormatter fmt = DateTimeFormat.forPattern("MM/yyyy");
+
     @ApiMethod(name = "get")
     public Timesheet getTimeSheet(@Named("contract") String contract,
-            @Named("monthDay") MonthDay monthDay, User user) throws OAuthRequestException, IOException {
+                                  @Named("monthDay") String monthDay, User user) throws OAuthRequestException, IOException {
+
+        MonthDay date = MonthDay.parse(monthDay, fmt);
         // @TODO Add user control;
         if (user == null) {
             throw new OAuthRequestException("Accès non autorisé");
@@ -41,10 +52,10 @@ public class TimesheetServiceApi {
 
         Timesheet result = null;
         try {
-            result = pm.getObjectById(Timesheet.class, Timesheet.createKey(contract, monthDay));
+            result = pm.getObjectById(Timesheet.class, Timesheet.createKey(contract, date));
 
             if (result == null) {
-                result = new Timesheet(contract, monthDay);
+                result = new Timesheet(contract, date);
             } else {
                 result = pm.detachCopy(result);
             }
@@ -73,13 +84,14 @@ public class TimesheetServiceApi {
 
     @ApiMethod(name = "validate", httpMethod = "PUT")
     public Timesheet validate(@Named("contract") String contract,
-            @Named("monthDay") MonthDay monthDay, User user) throws NotFoundException, OAuthRequestException, IOException {
+                              @Named("monthDay") String monthDay, User user) throws NotFoundException, OAuthRequestException, IOException {
         if (contract == null || monthDay == null) {
             throw new IllegalArgumentException("Contract and MontDay can not be null");
         }
+        MonthDay date = MonthDay.parse(monthDay, fmt);
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try {
-            Timesheet timesheet = pm.getObjectById(Timesheet.class, Timesheet.createKey(contract, monthDay));
+            Timesheet timesheet = pm.getObjectById(Timesheet.class, Timesheet.createKey(contract, date));
             if (timesheet == null) {
                 throw new NotFoundException("Timesheet does not exist.");
             } else {
@@ -105,14 +117,15 @@ public class TimesheetServiceApi {
 
     @ApiMethod(name = "reject", httpMethod = "PUT")
     public Timesheet reject(@Named("contract") String contract,
-            @Named("monthDay") MonthDay monthDay,
-            User user) throws NotFoundException, OAuthRequestException, IOException {
+                            @Named("monthDay") String monthDay,
+                            User user) throws NotFoundException, OAuthRequestException, IOException {
         if (contract == null || monthDay == null) {
             throw new IllegalArgumentException("Contract and MontDay can not be null");
         }
+        MonthDay date = MonthDay.parse(monthDay, fmt);
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try {
-            Timesheet timesheet = pm.getObjectById(Timesheet.class, Timesheet.createKey(contract, monthDay));
+            Timesheet timesheet = pm.getObjectById(Timesheet.class, Timesheet.createKey(contract, date));
             if (timesheet == null) {
                 throw new NotFoundException("Timesheet does not exist.");
             } else {

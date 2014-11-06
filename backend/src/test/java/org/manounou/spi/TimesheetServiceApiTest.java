@@ -5,32 +5,31 @@
  */
 package org.manounou.spi;
 
-import org.manounou.spi.TimesheetServiceApi;
 import com.google.appengine.api.users.User;
 import com.google.appengine.repackaged.org.joda.time.MonthDay;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.manounou.domain.Status;
 import org.manounou.domain.Timesheet;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 /**
- *
  * @author sgl
  */
 public class TimesheetServiceApiTest {
 
-    private final LocalServiceTestHelper helper
-            = new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
-
     private static final String EMAIL = "testuser@example.com";
     private static final String USER_ID = "123456789";
-
+    private final LocalServiceTestHelper helper
+            = new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
     private User user;
 
     private Timesheet defaultTimesheet = null;

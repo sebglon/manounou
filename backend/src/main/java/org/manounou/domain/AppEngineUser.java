@@ -7,10 +7,10 @@ package org.manounou.domain;
 
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.users.User;
+
 import javax.jdo.annotations.PrimaryKey;
 
 /**
- *
  * @author sgl
  */
 public class AppEngineUser {
@@ -26,6 +26,10 @@ public class AppEngineUser {
         this.email = user.getEmail();
     }
 
+    public static String createKey(String email) {
+        return KeyFactory.createKeyString(AppEngineUser.class.getSimpleName(), email);
+    }
+
     public User getUser() {
         return user;
     }
@@ -33,9 +37,5 @@ public class AppEngineUser {
     @PrimaryKey
     public String getKey() {
         return createKey(email);
-    }
-
-    public static String createKey(String email) {
-        return KeyFactory.createKeyString(AppEngineUser.class.getSimpleName(), email);
     }
 }

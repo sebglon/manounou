@@ -8,7 +8,6 @@ package org.manounou.form;
 import org.manounou.domain.ProfileType;
 
 /**
- *
  * @author sgl
  */
 public class ProfileForm {

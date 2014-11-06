@@ -6,7 +6,6 @@
 package org.manounou.domain;
 
 /**
- *
  * @author sgl
  */
 public enum Status {

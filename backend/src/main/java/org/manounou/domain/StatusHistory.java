@@ -6,11 +6,10 @@
 package org.manounou.domain;
 
 import java.util.Date;
-import javax.jdo.annotations.EmbeddedOnly;
+
 import javax.jdo.annotations.PersistenceCapable;
 
 /**
- *
  * @author sgl
  */
 @PersistenceCapable(embeddedOnly = "true")

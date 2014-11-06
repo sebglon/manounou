@@ -11,9 +11,7 @@ import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.google.api.server.spi.response.NotFoundException;
 import com.google.api.server.spi.response.UnauthorizedException;
 import com.google.appengine.api.users.User;
-import javax.jdo.JDOObjectNotFoundException;
-import javax.jdo.PersistenceManager;
-import javax.jdo.Transaction;
+
 import org.manounou.Constants;
 import org.manounou.ServiceUtils;
 import org.manounou.domain.PMF;
@@ -21,8 +19,11 @@ import org.manounou.domain.Profile;
 import org.manounou.domain.ProfileType;
 import org.manounou.form.ProfileForm;
 
+import javax.jdo.JDOObjectNotFoundException;
+import javax.jdo.PersistenceManager;
+import javax.jdo.Transaction;
+
 /**
- *
  * @author sgl
  */
 @Api(name = "profileApi", version = "v1", description = "An API to manage user profile",
@@ -39,7 +40,7 @@ public class ProfileServiceApi {
      *
      * @param user A User object injected by the cloud endpoints.
      * @return Profile object.
-     * @throws UnauthorizedException when the User object is null.
+     * @throws UnauthorizedException                                when the User object is null.
      * @throws com.google.api.server.spi.response.NotFoundException
      */
     @ApiMethod(name = "getProfile", path = "profile", httpMethod = HttpMethod.GET)
@@ -60,7 +61,7 @@ public class ProfileServiceApi {
      * Creates or updates a Profile object associated with the given user
      * object.
      *
-     * @param user A User object injected by the cloud endpoints.
+     * @param user        A User object injected by the cloud endpoints.
      * @param profileForm A ProfileForm object sent from the client form.
      * @return Profile object just created.
      * @throws UnauthorizedException when the User object is null.

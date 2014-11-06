@@ -8,12 +8,12 @@ package org.manounou.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
 /**
- *
  * @author sgl
  */
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
@@ -54,10 +54,10 @@ public class Profile {
     /**
      * Public constructor for Profile.
      *
-     * @param userId The datastore key.
+     * @param userId      The datastore key.
      * @param displayName Any string user wants us to display him/her on this
-     * system.
-     * @param mainEmail User's main e-mail address.
+     *                    system.
+     * @param mainEmail   User's main e-mail address.
      * @param profileType User's profileType (Enum is in ProfileForm)
      */
     public Profile(String userId, String displayName, String mainEmail, ProfileType profileType) {
@@ -126,13 +126,13 @@ public class Profile {
 
     /**
      * Adds a ConferenceId to conferenceIdsToAttend.
-     *
+     * <p/>
      * The method initConferenceIdsToAttend is not thread-safe, but we need a
      * transaction for calling this method after all, so it is not a practical
      * issue.
      *
      * @param conferenceKey a websafe String representation of the Conference
-     * Key.
+     *                      Key.
      */
     public void addToConferenceKeysToAttend(String conferenceKey) {
         timeSheetKeys.add(conferenceKey);
@@ -142,7 +142,7 @@ public class Profile {
      * Remove the conferenceId from conferenceIdsToAttend.
      *
      * @param conferenceKey a websafe String representation of the Conference
-     * Key.
+     *                      Key.
      */
     public void unregisterFromConference(String conferenceKey) {
         if (timeSheetKeys.contains(conferenceKey)) {

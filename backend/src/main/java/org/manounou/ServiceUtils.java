@@ -7,17 +7,19 @@ package org.manounou;
 
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.users.User;
-import java.util.logging.Logger;
-import javax.jdo.PersistenceManager;
-import javax.jdo.Transaction;
-import javax.jdo.annotations.Transactional;
+
 import org.manounou.domain.AppEngineUser;
 import org.manounou.domain.PMF;
 import org.manounou.domain.Profile;
 import org.manounou.domain.ProfileType;
 
+import java.util.logging.Logger;
+
+import javax.jdo.PersistenceManager;
+import javax.jdo.Transaction;
+import javax.jdo.annotations.Transactional;
+
 /**
- *
  * @author sgl
  */
 public final class ServiceUtils {

@@ -7,11 +7,12 @@ package org.manounou.domain;
 
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.repackaged.org.joda.time.MonthDay;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import javax.jdo.annotations.Embedded;
+
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
@@ -19,7 +20,6 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 /**
- *
  * @author sgl
  */
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")

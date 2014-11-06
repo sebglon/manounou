@@ -10,10 +10,8 @@ import com.google.api.server.spi.response.UnauthorizedException;
 import com.google.appengine.api.users.User;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
-import javax.jdo.JDOObjectNotFoundException;
-import javax.jdo.PersistenceManager;
+
 import org.junit.After;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.manounou.domain.PMF;
@@ -21,8 +19,14 @@ import org.manounou.domain.Profile;
 import org.manounou.domain.ProfileType;
 import org.manounou.form.ProfileForm;
 
+import javax.jdo.JDOObjectNotFoundException;
+import javax.jdo.PersistenceManager;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
 /**
- *
  * @author sgl
  */
 public class ProfileServiceApiTest {
@@ -32,16 +36,12 @@ public class ProfileServiceApiTest {
     private static final String USER_ID = "123456789";
 
     private static final String DISPLAY_NAME = "Test User";
-
-    private User user;
-
-    private ProfileServiceApi profileServiceApi;
-
     private final LocalServiceTestHelper helper
             = new LocalServiceTestHelper(
-                    new LocalDatastoreServiceTestConfig().
+            new LocalDatastoreServiceTestConfig().
                     setDefaultHighRepJobPolicyUnappliedJobPercentage(100));
-
+    private User user;
+    private ProfileServiceApi profileServiceApi;
     private PersistenceManager pm;
 
     @Before
