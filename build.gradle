@@ -22,9 +22,3 @@ allprojects {
     }
 }
 
-if (!System.env.containsKey("JENKINS_URL")) {
-    def javaVersion = System.properties['java.version']
-    if (JavaVersion.toVersion(javaVersion) != project.targetCompatibility) {
-        throw new GradleException("Expected Java version ${project.targetCompatibility} but running with $javaVersion")
-    }
-}
