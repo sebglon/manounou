@@ -43,7 +43,10 @@ public class ProfileServiceApi {
      * @throws UnauthorizedException                                when the User object is null.
      * @throws com.google.api.server.spi.response.NotFoundException
      */
-    @ApiMethod(name = "getProfile", path = "profile", httpMethod = HttpMethod.GET)
+    @ApiMethod(name = "getProfile", path = "profile", httpMethod = HttpMethod.GET,
+            scopes = {Constants.EMAIL_SCOPE},
+            clientIds = {Constants.WEB_CLIENT_ID, Constants.API_EXPLORER_CLIENT_ID,Constants.ANDROID_CLIENT_ID},
+            audiences = {Constants.ANDROID_AUDIENCE})
     public Profile getProfile(final User user) throws UnauthorizedException, NotFoundException {
         if (user == null) {
             throw new UnauthorizedException("Authorization required");

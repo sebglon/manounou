@@ -43,7 +43,7 @@ public class Profile {
     /**
      * Keys of the conferences that this user registers to attend.
      */
-    private List<String> timeSheetKeys = new ArrayList<>(0);
+    private List<String> timeSheetKeys = new ArrayList<String>(0);
 
     /**
      * Just making the default constructor private.
@@ -116,7 +116,6 @@ public class Profile {
      * Update the Profile with the given displayName and profileType
      *
      * @param displayName
-     * @param profileType
      */
     public void update(String displayName) {
         if (displayName != null) {

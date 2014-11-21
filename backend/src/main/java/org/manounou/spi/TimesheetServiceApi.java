@@ -33,7 +33,7 @@ import static org.manounou.domain.Status.REJECTED;
  */
 @Api(name = "timesheetApi", version = "v1", description = "An API to manage timesheet",
         scopes = {Constants.EMAIL_SCOPE},
-        clientIds = {Constants.WEB_CLIENT_ID, Constants.API_EXPLORER_CLIENT_ID},
+        clientIds = {Constants.WEB_CLIENT_ID, Constants.API_EXPLORER_CLIENT_ID,Constants.ANDROID_CLIENT_ID},
         audiences = {Constants.ANDROID_AUDIENCE})
 public class TimesheetServiceApi {
 
