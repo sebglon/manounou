@@ -9,9 +9,11 @@
     <string name="toast_exception_checking_authorization">Exception checking authorization</string>
     <string name="toast_no_google_accounts_registered">No Google Accounts Registered</string>
     <string name="toast_only_one_google_account_registered">Your only registered Google account was
-    selected
-</string>
+    selected</string>
     <string name="action_settings">Settings</string>
     <string name="userName">No user auth</string>
+    <string name="accountName">No user auth</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_logout">Déconnexion</string>
 
 </resources>

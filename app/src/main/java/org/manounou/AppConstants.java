@@ -22,8 +22,13 @@ import javax.annotation.Nullable;
  */
 public class AppConstants {
 
-    public static final String WEB_CLIENT_ID = "618238288494-ki0oogpn6en7a58j5vv821j4mklpfa05.apps.googleusercontent.com";
+    public static final String WEB_CLIENT_ID = "618238288494-8ovsi7nfbslkiifku6ksbfgd82a1evlt.apps.googleusercontent.com";
     public static final String AUDIENCE = "server:client_id:" + WEB_CLIENT_ID;
+    public static final String ANDROID_CLIENT_ID = "618238288494-bj5bptm9d3t6a9on4f395bnrm47tnbsm.apps.googleusercontent.com";
+    public static final String PREF_AUTH_TOKEN = "authToken";
+    public static final String TAG = "Manounouprefs";
+
+    public static final String PREF_ACCOUNT_NAME = "accountName";
     /**
      * Class instance of the JSON factory.
      */
@@ -50,14 +55,14 @@ public class AppConstants {
     /**
      * Retrieve a Helloworld api service handle to access the API.
      */
-    public static ProfileApi getApiServiceHandle(@Nullable GoogleAccountCredential credential) {
+    public static ProfileApi getProfileApiServiceHandle(@Nullable GoogleAccountCredential credential) {
         // Use a builder to help formulate the API request.
         ProfileApi.Builder helloWorld = new ProfileApi.Builder(AppConstants.HTTP_TRANSPORT,
                 AppConstants.JSON_FACTORY, credential);
 
         // If running the Cloud Endpoint API locally then point the API stub there by un-commenting the
         // next line.
-        // helloWorld.setRootUrl("http://192.168.1.100:8080/_ah/api/");
+        helloWorld.setRootUrl("http://192.168.1.100:8080/_ah/api/");
 
         return helloWorld.build();
     }

@@ -28,7 +28,7 @@ import javax.jdo.Transaction;
  */
 @Api(name = "profileApi", version = "v1", description = "An API to manage user profile",
         scopes = {Constants.EMAIL_SCOPE},
-        clientIds = {Constants.WEB_CLIENT_ID, Constants.API_EXPLORER_CLIENT_ID},
+        clientIds = {Constants.WEB_CLIENT_ID, Constants.API_EXPLORER_CLIENT_ID, Constants.ANDROID_CLIENT_ID},
         audiences = {Constants.ANDROID_AUDIENCE})
 public class ProfileServiceApi {
 
@@ -45,7 +45,7 @@ public class ProfileServiceApi {
      */
     @ApiMethod(name = "getProfile", path = "profile", httpMethod = HttpMethod.GET,
             scopes = {Constants.EMAIL_SCOPE},
-            clientIds = {Constants.WEB_CLIENT_ID, Constants.API_EXPLORER_CLIENT_ID,Constants.ANDROID_CLIENT_ID},
+            clientIds = {Constants.WEB_CLIENT_ID, Constants.API_EXPLORER_CLIENT_ID, Constants.ANDROID_CLIENT_ID},
             audiences = {Constants.ANDROID_AUDIENCE})
     public Profile getProfile(final User user) throws UnauthorizedException, NotFoundException {
         if (user == null) {
