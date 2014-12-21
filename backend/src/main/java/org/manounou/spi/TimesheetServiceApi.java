@@ -7,6 +7,7 @@ package org.manounou.spi;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
+import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.google.api.server.spi.response.NotFoundException;
 import com.google.appengine.api.oauth.OAuthRequestException;
@@ -32,8 +33,9 @@ import static org.manounou.domain.Status.REJECTED;
  * @author sgl
  */
 @Api(name = "timesheetApi", version = "v1", description = "An API to manage timesheet",
+        namespace = @ApiNamespace(ownerDomain = "manounou.org", ownerName = "Ma nounou"),
         scopes = {Constants.EMAIL_SCOPE},
-        clientIds = {Constants.WEB_CLIENT_ID, Constants.API_EXPLORER_CLIENT_ID,Constants.ANDROID_CLIENT_ID},
+        clientIds = {Constants.WEB_CLIENT_ID, Constants.API_EXPLORER_CLIENT_ID, Constants.ANDROID_CLIENT_ID},
         audiences = {Constants.ANDROID_AUDIENCE})
 public class TimesheetServiceApi {
 

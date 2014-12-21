@@ -9,7 +9,8 @@ import javax.inject.Named;
 /**
  * An endpoint class we are exposing
  */
-@Api(name = "myApi", version = "v1", namespace = @ApiNamespace(ownerDomain = "backend.manounou.org", ownerName = "backend.manounou.org", packagePath = ""))
+@Api(name = "myApi", version = "v1",
+        namespace = @ApiNamespace(ownerDomain = "backend.manounou.org", ownerName = "backend.manounou.org", packagePath = ""))
 public class MyEndpoint {
 
     /**

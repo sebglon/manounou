@@ -197,7 +197,6 @@ public class AuthenticationFragment extends Fragment {
                 SharedPreferences.Editor editor = ((App) getActivity().getApplication()).getPreferences().edit();
                 editor.putString(PREF_ACCOUNT_NAME, emailAccount);
                 editor.commit();
-                credential.setSelectedAccountName(emailAccount);
 
                 // Success.
                 return true;

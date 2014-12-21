@@ -8,6 +8,7 @@ package org.manounou.spi;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiMethod.HttpMethod;
+import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.response.NotFoundException;
 import com.google.api.server.spi.response.UnauthorizedException;
 import com.google.appengine.api.users.User;
@@ -27,9 +28,10 @@ import javax.jdo.Transaction;
  * @author sgl
  */
 @Api(name = "profileApi", version = "v1", description = "An API to manage user profile",
-        scopes = {Constants.EMAIL_SCOPE},
+        namespace = @ApiNamespace(ownerDomain = "manounou.org", ownerName = "Ma nounou"),
+        scopes = {Constants.EMAIL_SCOPE, Constants.PROFILE_SCOPE},
         clientIds = {Constants.WEB_CLIENT_ID, Constants.API_EXPLORER_CLIENT_ID, Constants.ANDROID_CLIENT_ID},
-        audiences = {Constants.ANDROID_AUDIENCE})
+        audiences = {Constants.ANDROID_AUDIENCE, Constants.ANDROID_CLIENT_ID})
 public class ProfileServiceApi {
 
     PersistenceManager pm = PMF.get().getPersistenceManager();
@@ -70,7 +72,7 @@ public class ProfileServiceApi {
      * @throws UnauthorizedException when the User object is null.
      */
     @ApiMethod(name = "saveProfile", path = "profile", httpMethod = HttpMethod.POST)
-    public Profile saveProfile(final User user, final ProfileForm profileForm)
+    public Profile saveProfile(final ProfileForm profileForm, final User user)
             throws UnauthorizedException {
         if (user == null) {
             throw new UnauthorizedException("Authorization required");

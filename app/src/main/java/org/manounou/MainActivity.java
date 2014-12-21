@@ -14,20 +14,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appspot.mananou44sql.profileApi.model.Profile;
+import com.google.android.gms.auth.GoogleAuthException;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAuthIOException;
 
 import org.manounou.fragment.AuthenticationFragment;
 import org.manounou.fragment.ProfileFragment;
+import org.manounou.profileApi.model.Profile;
 
 import java.io.IOException;
 
 import static org.manounou.AppConstants.getProfileApiServiceHandle;
 
-public class MainActivity extends Activity implements AuthenticationFragment.Authenticationlistener {
+public class MainActivity extends Activity implements AuthenticationFragment.Authenticationlistener, ProfileFragment.ProfileListener {
     private static final String LOG_TAG = "MainActivity";
-
-
     private ProfileApiTask mProfileTask;
     private Profile profile;
 
@@ -120,6 +119,12 @@ public class MainActivity extends Activity implements AuthenticationFragment.Aut
         Toast.makeText(getApplicationContext(), "Erreur d'authentification", Toast.LENGTH_SHORT).show();
     }
 
+    public void onUpdateProfileSuccess() {
+    }
+
+    public void onUpdateProfileFail() {
+    }
+
     public void getProfile(String emailAccount) {
         // Cancel previously running tasks.
         if (mProfileTask != null) {
@@ -159,12 +164,16 @@ public class MainActivity extends Activity implements AuthenticationFragment.Aut
             mProfileTask = this;
 
             try {
-                Profile profile = getProfileApiServiceHandle(((App) getApplication()).getCredential()).getProfile().execute();
+                String token = ((App) getApplication()).getCredential().getToken();
+                Profile profile = getProfileApiServiceHandle(((App) getApplication()).getCredential()).getProfile()
+                        .setOauthToken(token).execute();
                 return profile;
             } catch (GoogleAuthIOException authE) {
                 Log.e(LOG_TAG, "No profile found", authE);
             } catch (IOException e) {
                 Log.e(LOG_TAG, "Exception during API call", e);
+            } catch (GoogleAuthException e) {
+                e.printStackTrace();
             }
             return null;
         }

@@ -7,6 +7,8 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 
+import org.manounou.profileApi.model.Profile;
+
 import static org.manounou.AppConstants.PREF_ACCOUNT_NAME;
 
 /**
@@ -17,6 +19,8 @@ public class App extends Application {
     private static SharedPreferences preferences;
 
     private static GoogleAccountCredential credential;
+
+    private Profile profile;
 
     /**
      * Tracker Google Analytics.
@@ -31,7 +35,7 @@ public class App extends Application {
         preferences = getSharedPreferences(AppConstants.TAG, 0);
         // Create a Google credential since this is an authenticated request to the API.
         credential = GoogleAccountCredential.usingAudience(getApplicationContext()
-                , AppConstants.ANDROID_CLIENT_ID);
+                , AppConstants.AUDIENCE);
         if (getAccountName() != null) {
             credential.setSelectedAccountName(getAccountName());
         }
@@ -67,6 +71,14 @@ public class App extends Application {
 
     public void setAccountName(String accountName) {
         getPreferences().edit().putString(PREF_ACCOUNT_NAME, accountName).commit();
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 }
 

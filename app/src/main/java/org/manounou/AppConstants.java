@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 
-import com.appspot.mananou44sql.profileApi.ProfileApi;
 import com.google.android.gms.auth.GoogleAuthUtil;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -14,6 +13,8 @@ import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
+
+import org.manounou.profileApi.ProfileApi;
 
 import javax.annotation.Nullable;
 
@@ -24,7 +25,7 @@ public class AppConstants {
 
     public static final String WEB_CLIENT_ID = "618238288494-8ovsi7nfbslkiifku6ksbfgd82a1evlt.apps.googleusercontent.com";
     public static final String AUDIENCE = "server:client_id:" + WEB_CLIENT_ID;
-    public static final String ANDROID_CLIENT_ID = "618238288494-bj5bptm9d3t6a9on4f395bnrm47tnbsm.apps.googleusercontent.com";
+    public static final String ANDROID_CLIENT_ID = "618238288494-k7i521v8516ua49j8d3hbrpcogttrpt5.apps.googleusercontent.com";
     public static final String PREF_AUTH_TOKEN = "authToken";
     public static final String TAG = "Manounouprefs";
 
@@ -62,7 +63,7 @@ public class AppConstants {
 
         // If running the Cloud Endpoint API locally then point the API stub there by un-commenting the
         // next line.
-        helloWorld.setRootUrl("http://192.168.1.100:8080/_ah/api/");
+        helloWorld.setRootUrl("http://192.168.1.20:8080/_ah/api/");
 
         return helloWorld.build();
     }
